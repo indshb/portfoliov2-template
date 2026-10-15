@@ -20,11 +20,11 @@ export const homeSectionList: HomeSection[] = [
   { id: 'hero', Component: HeroSection },
   { id: 'manifesto', Component: ManifestoSection },
   { id: 'automation', Component: AutomationSection },
-  { id: 'work', Component: WorkSection },
+  //{ id: 'work', Component: WorkSection },
   { id: 'services', Component: ServicesSection },
   { id: 'about', Component: AboutSection },
   // Proof, Showcase and Contact keep their own pages too (/proof, /showcase, /contact); here they run as sections.
-  { id: 'proof', Component: ProofSection },
+  //{ id: 'proof', Component: ProofSection },
   { id: 'showcase', Component: ShowcaseSection },
   // Contact is the last section, after Showcase. /contact stays a page too.
   { id: 'contact', Component: ContactSection },

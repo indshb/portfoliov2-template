@@ -9,17 +9,17 @@ const mark = (name: string, file: string, mono?: true): ToolMark => ({ name, log
  * grounds and never disappears.
  */
 export const tools = {
-  toolA: mark('Tool A', 'tool-01.svg'),
-  toolB: mark('Tool B', 'tool-02.svg'),
-  toolC: mark('Tool C', 'tool-03.svg'),
-  toolD: mark('Tool D', 'tool-04.svg'),
-  toolE: mark('Tool E', 'tool-05.svg'),
-  toolF: mark('Tool F', 'tool-06.svg'),
-  toolG: mark('Tool G', 'tool-07.svg'),
-  toolH: mark('Tool H', 'tool-08.svg'),
-  toolI: mark('Tool I', 'tool-09.svg'),
-  toolJ: mark('Tool J', 'tool-10.svg'),
-  toolK: mark('Tool K', 'tool-11.svg'),
+  toolA: mark('n8n', 'n8n.svg'),
+  toolB: mark('Gmail', 'gmail.svg'),
+  toolC: mark('Google Sheets', 'google-sheets.svg'),
+  toolD: mark('Make', 'make.svg'),
+  toolE: mark('n8n', 'n8n.svg'),
+  toolF: mark('Outlook', 'outlook.svg'),
+  toolG: mark('SharePoint', 'sharepoint.svg'),
+  toolH: mark('Slack', 'slack.svg'),
+  toolI: mark('Vapi', 'vapi.svg'),
+  toolJ: mark('Word', 'word.svg'),
+  toolK: mark('Zapier', 'zapier.svg'),
   toolL: mark('Tool L', 'tool-12.svg'),
 } satisfies Record<string, ToolMark>
 
@@ -36,4 +36,5 @@ export const dailyTools: ToolMark[] = [
   tools.toolI,
   tools.toolJ,
   tools.toolK,
+  tools.toolL,
 ]

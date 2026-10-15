@@ -45,6 +45,12 @@ export const caseStudies: { id: string; title: string; summary: string; link: Li
     summary: 'PLACEHOLDER - tell me what to put here: two sentences on the problem, what you built and the result.',
     link: { label: 'Read the case study', href: '#', external: true },
   },
+  {
+    id: 'case-study-3',
+    title: 'Case Study 3',
+    summary: 'PLACEHOLDER - tell me what to put here: two sentences on the problem, what you built and the result.',
+    link: { label: 'Read the case study', href: '#', external: true },
+  },
 ]
 
 export const processDoc = {
@@ -56,12 +62,12 @@ export const processDoc = {
 /* ---------- Screens ---------- */
 
 export const screens: { id: string; name: string; kicker: string; summary: string }[] = [
-  { id: 'screen-1', name: 'Screen One', kicker: 'Screen', summary: 'PLACEHOLDER - tell me what to put here: one sentence on what this screen shows.' },
-  { id: 'screen-2', name: 'Screen Two', kicker: 'Screen', summary: 'PLACEHOLDER - tell me what to put here: one sentence on what this screen shows.' },
-  { id: 'screen-3', name: 'Screen Three', kicker: 'Screen', summary: 'PLACEHOLDER - tell me what to put here: one sentence on what this screen shows.' },
-  { id: 'screen-4', name: 'Screen Four', kicker: 'Screen', summary: 'PLACEHOLDER - tell me what to put here: one sentence on what this screen shows.' },
-  { id: 'screen-5', name: 'Screen Five', kicker: 'Screen', summary: 'PLACEHOLDER - tell me what to put here: one sentence on what this screen shows.' },
-  { id: 'screen-6', name: 'Screen Six', kicker: 'Screen', summary: 'PLACEHOLDER - tell me what to put here: one sentence on what this screen shows.' },
+  { id: 'screen-1', name: 'TOOL INTEGRATION & AUTOMATION', kicker: '01 /', summary: 'Repeated data entry and disconnected systems take time away from customers. Using established tools such as n8n and Power Automate, I connect your CRM, forms, calendars, and task boards through supported integrations, APIs, and webhooks so information moves with clear checks and less manual copying.' },
+  { id: 'screen-2', name: 'DATA-DRIVEN OPERATIONAL INSIGHTS', kicker: '02 /', summary: 'Manual reports and scattered records make it difficult to see what needs attention. Using established tools such as Excel, Power Query, and Airtable, we bring operational data into clear reports and dashboards so you can review workload, spot delays, and decide where to focus.' },
+  { id: 'screen-3', name: 'CENTRALIZED DOCUMENT MANAGEMENT', kicker: '03 /', summary: 'Scattered files and duplicate versions make routine work harder. Using established tools such as SharePoint, OneDrive, and Google Drive, we organize shared documents, access, and reusable templates so your team can find what it needs and work from one clear source.' },
+  { id: 'screen-4', name: 'TEAM COMMUNICATION & COLLABORATION', kicker: '04 /', summary: 'Missed updates and unclear handoffs slow remote teams down. Using established tools such as Microsoft Teams, Slack, and Google Calendar, we organize communication, shared schedules, and task ownership so your team spends less time chasing answers and knows what happens next.' },
+  //{ id: 'screen-5', name: 'Screen Five', kicker: 'Screen', summary: 'PLACEHOLDER - tell me what to put here: one sentence on what this screen shows.' },
+  //{ id: 'screen-6', name: 'Screen Six', kicker: 'Screen', summary: 'PLACEHOLDER - tell me what to put here: one sentence on what this screen shows.' },
 ]
 
 /* ---------- Websites (self-contained demo pages in public/demos) ---------- */
@@ -182,15 +188,23 @@ export const experiments: AiGroup[] = [
 
 const buildsIn = (groups: AiGroup[]) => groups.reduce((n, g) => n + g.builds.length, 0)
 
-/** Number of builds across every Work chapter, shown as the sidebar badge. Derived, never typed in. */
-export const workCount =
-  1 +
-  caseStudies.length +
-  1 +
-  screens.length +
-  sampleSites.length +
-  funnelPages.length +
-  bookingPages.length +
-  apps.length +
-  buildsIn(sideProjects) +
-  buildsIn(experiments)
+/**
+ * Which Work chapters are switched on. Add an id to show a chapter, remove it to hide it.
+ * Hidden chapters keep all their content; they just do not appear on the site.
+ * Ids: 'featured', 'case-studies', 'process', 'screens', 'websites', 'apps', 'side-projects', 'experiments'
+ */
+export const VISIBLE_CHAPTERS: string[] = ['screens']
+
+const chapterCounts: Record<string, number> = {
+  featured: 1,
+  'case-studies': caseStudies.length,
+  process: 1,
+  screens: screens.length,
+  websites: sampleSites.length + funnelPages.length + bookingPages.length,
+  apps: apps.length,
+  'side-projects': buildsIn(sideProjects),
+  experiments: buildsIn(experiments),
+}
+
+/** Number of builds across the visible Work chapters, shown as the sidebar badge. Derived, never typed in. */
+export const workCount = VISIBLE_CHAPTERS.reduce((n, id) => n + (chapterCounts[id] ?? 0), 0)

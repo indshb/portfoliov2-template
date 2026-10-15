@@ -14,6 +14,7 @@ import {
   screens,
   sideProjects,
   workCount,
+  VISIBLE_CHAPTERS,
 } from './work'
 
 /**
@@ -22,10 +23,10 @@ import {
  * (see the comment on `.hero__title` there).
  */
 export const homeHero = {
-  headlineThin: 'Your headline.',
-  headlineBold: 'Make it yours.',
-  subhead: 'PLACEHOLDER - tell me what to put here: one sentence on who you help and the result you get them.',
-  cta: { label: 'Get in touch', to: '/#contact' },
+  headlineThin: 'save time.',
+  headlineBold: 'save money.',
+  subhead: 'I build AI and automation workflows that take repetitive admin off your plate, so your team can focus on customers and the work that grows your business.',
+  cta: { label: 'Talk through your operations', to: '/#contact' },
 }
 
 /**
@@ -38,15 +39,15 @@ export type ManifestoPart = string | { key: string }
 export const homeManifesto = {
   eyebrow: method.eyebrow,
   parts: [
-    'This is your',
-    { key: 'statement.' },
-    'Say who you',
-    { key: 'help,' },
-    'what you',
-    { key: 'make' },
-    'for them, and how you',
-    { key: 'deliver' },
-    'the result they came for.',
+    'Deals closed. Cases resolved.',
+    { key: 'Growth?' },
+    'Still waiting. The problem is not your',
+    { key: 'people.' },
+    'it is the',
+    { key: 'process' },
+    'they are stuck',
+    { key: 'running.' },
+    '',
   ] satisfies ManifestoPart[],
 }
 
@@ -145,7 +146,7 @@ const screenItems: WorkItem[] = screens.map((s) => ({
  * the sitemap follow (the bento's grid areas in work.css are keyed by chapter id). A chapter with a
  * `lead` is a single build; one with no landscape picture shows its `marks` as a logo face instead.
  */
-export const workChapters: WorkChapter[] = [
+const allWorkChapters: WorkChapter[] = [
   {
     id: 'featured',
     title: 'Featured Project',
@@ -190,11 +191,11 @@ export const workChapters: WorkChapter[] = [
   },
   {
     id: 'screens',
-    title: 'Screens',
-    line: 'Real screens from the systems you build.',
+    title: 'Service Screens',
+    line: 'Four ways to bring structure to daily operations.',
     count: screenItems.length,
-    unit: 'screens',
-    description: 'PLACEHOLDER - tell me what to put here: one or two sentences on the screens you show (under 160 characters).',
+    unit: 'services',
+    description: 'Less chasing. Clearer work. I use established, widely used tools to bring structure to your daily operations. Start with the systems you have, solve the steps that slow you down, and give your team a clearer way to work.',
     marks: [tools.toolF, tools.toolG, tools.toolH],
     items: screenItems,
   },
@@ -251,5 +252,7 @@ export const workChapters: WorkChapter[] = [
     items: experimentItems,
   },
 ]
+/** Only the chapters switched on in VISIBLE_CHAPTERS (work.ts) are shown. */
+export const workChapters: WorkChapter[] = allWorkChapters.filter((chapter) => VISIBLE_CHAPTERS.includes(chapter.id))
 
 export const findChapter = (id: string | undefined) => workChapters.find((chapter) => chapter.id === id)
